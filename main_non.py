@@ -1,4 +1,7 @@
+# non-inc algo wiht Naive
 from collections import defaultdict
+import time
+import sys
 
 edges = set()
 dic_edges = defaultdict(list)
@@ -61,6 +64,7 @@ class Vertex:
         return self.type            
 
 def addEdge(frm=None, to=None):
+    sys.stdout.write(f"adding {frm}, {to}\n")
     if frm == None or to == None:
         return False
 
@@ -93,6 +97,7 @@ def addEdge(frm=None, to=None):
 
 
 def remEdge(frm=None, to=None):
+    sys.stdout.write(f"removing {frm}, {to}\n")
     if frm == None or to == None:
         return False
     edge_t = (frm, to)
@@ -125,20 +130,22 @@ def reCompGraph():
         
 
 if __name__ == '__main__':
+    start = time.perf_counter()
     while True:
-        print("------------ Non inc ver ------------")
-        print("To add an edge: add x y or a x y")
-        print("To remove an edge: rem x y or r x y")
-        print("---------------------------------------")
-        print("To print the reachablity: pp or print paths")
-        print("---------------------------------------")
-        print("To end the program: end or d")
+        # print("------------ Non inc ver ------------")
+        # print("To add an edge: add x y or a x y")
+        # print("To remove an edge: rem x y or r x y")
+        # print("---------------------------------------")
+        # print("To print the reachablity: pp or print paths")
+        # print("---------------------------------------")
+        # print("To end the program: end or d")
         
         com = input()
         if com == 'end' or com == 'd':
             break
         if com == 'pp' or com == 'print paths':
-            print(pathss)
+            sys.stdout.write(str(sorted(pathss)))
+            sys.stdout.write("\n")
             continue
         com = com.lower().split()
         if len(com) != 3:
@@ -150,10 +157,7 @@ if __name__ == '__main__':
         frm = int(com[1])
         to = int(com[2])
         if com[0] == 'a' or com[0] == 'add':
-            if addEdge(frm, to):
-                print('Added!')
-            else:
-                print('bruh')
+                addEdge(frm, to)
         elif com[0] == 'r' or com[0] == 'rem':
             if remEdge(frm, to):
                 print('removed!')
@@ -161,3 +165,5 @@ if __name__ == '__main__':
                 print('bruh')
         else:
             print('not a valid com')
+    end = time.perf_counter()
+    print (end - start, file=sys.stderr)
