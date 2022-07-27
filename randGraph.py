@@ -18,8 +18,5 @@ for i in range (1, MAX,2):
     if (i+1).__mod__(10) == 0:
         print("pp")
 
-for i in range (1, MAX,2):
-    print(f"a {i} {(i+1)}")
-
 print("pp")
 print ("d")
